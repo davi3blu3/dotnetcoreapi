@@ -24,8 +24,10 @@ namespace TodoApi
       services.AddCors(options =>
         {
           options.AddPolicy(MyAllowSpecificOrigins,
-              builder => builder.WithOrigins("http://localhost:4200",
-                                             "https://localhost:4200"));
+              builder => builder.WithOrigins("http://localhost:4200", "https://localhost:4200")
+                                .AllowAnyMethod()
+                                .AllowAnyHeader()
+          );
         });
       services.AddDbContext<TodoContext>(opt =>
         opt.UseInMemoryDatabase("TodoList"));
